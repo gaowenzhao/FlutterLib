@@ -1,6 +1,6 @@
-import 'HttpRequest.dart';
-import 'HttpResult.dart';
-import 'Result.dart';
+import 'package:flutterlib/net/HttpRequest.dart';
+import 'package:flutterlib/net/HttpResult.dart';
+import 'package:flutterlib/net/Result.dart';
 class HttpApi{
    static get(String url,Function success,{Function error}) async {
     HttpResult data = await HttpRequest.get(url);

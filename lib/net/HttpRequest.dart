@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 import 'Code.dart';
 import 'Config.dart';
-import 'HttpResult.dart';
-import 'PackInfoUtils.dart';
+import 'package:flutterlib/net/HttpResult.dart';
+import '../PackInfoUtils.dart';
 ///http请求管理类，可单独抽取出来
 class HttpRequest {
   static String _baseUrl = "https://m.hzed.com";

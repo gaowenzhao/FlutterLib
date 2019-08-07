@@ -1,5 +1,5 @@
 import 'package:event_bus/event_bus.dart';
-import 'HttpErrorEvent.dart';
+import 'package:flutterlib/net/HttpErrorEvent.dart';
 ///网络请求错误编码
 class Code {
   ///网络错误
