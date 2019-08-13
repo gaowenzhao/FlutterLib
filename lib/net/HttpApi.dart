@@ -2,8 +2,8 @@ import 'package:flutterlib/net/HttpRequest.dart';
 import 'package:flutterlib/net/HttpResult.dart';
 import 'package:flutterlib/net/Result.dart';
 class HttpApi{
-   static get(String url,Function success,{Function error}) async {
-    HttpResult data = await HttpRequest.get(url);
+   static get(String url,{param,Function success,Function error}) async {
+    HttpResult data = await HttpRequest.get(url,param:param);
     _handleData(data,success,error: error);
   }
   static post(String url,{param,Function success,Function error})async{

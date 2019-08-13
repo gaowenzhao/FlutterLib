@@ -7,7 +7,9 @@ import 'package:flutterlib/net/HttpResult.dart';
 import '../PackInfoUtils.dart';
 ///http请求管理类，可单独抽取出来
 class HttpRequest {
-  static String _baseUrl = "https://m.hzed.com";
+//  static String _baseUrl = "https://m.hzed.com";
+//  static String _baseUrl = "http://10.10.30.137";
+  static String _baseUrl = "https://timeline-merger-ms.juejin.im";
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
@@ -16,15 +18,7 @@ class HttpRequest {
   }
 
   static post(url,{param}) async{
-    return await request(url, param,new Options(method: 'POST'));
-  }
-
-  static delete(url,{param}) async{
-    return await request(url, param,new Options(method: 'DELETE'));
-  }
-
-  static put(url,{param}) async{
-    return await request(url, param,new Options(method: "PUT", contentType: ContentType.text));
+    return await request(url, param, Options(method: 'POST'));
   }
 
   ///发起网络请求
@@ -82,7 +76,11 @@ class HttpRequest {
 
     Response response;
     try {
-      response = await dio.request(url, data: params, options: option);
+      if(option.method == "POST"){
+        response = await dio.post(url, data: params, options: option);
+      }else{
+          response = await dio.get(url, queryParameters:params, options: option);
+      }
     } on DioError catch (e) {
       // 请求错误处理
       Response errorResponse;
