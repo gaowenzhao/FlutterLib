@@ -68,7 +68,7 @@ class BannerViewState extends State<BannerView> {
   }
 
    ///下面的小圆点
-  Widget _buildIndicator() {
+  Widget _buildCircleIndicator() {
     List<Widget> indicators = [];
     for (int i = 0; i < widget.data.length; i++) {
       indicators.add(Container(
@@ -79,10 +79,14 @@ class BannerViewState extends State<BannerView> {
               shape: BoxShape.circle,
               color: i==selectIndex?Colors.white:Colors.grey)));
     }
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: indicators);
+    return Align(
+      alignment: FractionalOffset.bottomCenter,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: indicators),
+    );
   }
+  ///banner
   Widget _buildPageView(){
    return PageView.builder(
       onPageChanged: (index){
@@ -101,6 +105,26 @@ class BannerViewState extends State<BannerView> {
             index, widget.data[realIndex]);
       },
       itemCount: IntegerMax,
+    );
+  }
+  //文本指示器
+  Widget _buildTextIndicator(){
+   return Positioned(
+      right: 0,
+      top: 0,
+      child: Container(
+        width: 60.0,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 1.0),
+        margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+        child: Text("${selectIndex+1} / ${widget.data.length}",
+            style: TextStyle(color: Colors.white, fontSize: 14)),
+        decoration: BoxDecoration(
+            color: Colors.black45,
+            borderRadius:
+            BorderRadius.circular(10)
+        ),
+      ),
     );
   }
   @override
@@ -128,10 +152,11 @@ class BannerViewState extends State<BannerView> {
           onTapCancel: () {
             resetTimer();
           },
-          child: Stack(alignment: Alignment.bottomCenter,
+          child: Stack(
             children: <Widget>[
               _buildPageView(),
-              _buildIndicator()
+              _buildCircleIndicator(),
+              _buildTextIndicator()
             ]),
         ));
   }
