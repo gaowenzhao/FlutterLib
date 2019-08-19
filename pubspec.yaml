@@ -27,6 +27,10 @@ dependencies:
   ###网络信息
   connectivity: ^0.4.3+6
   event_bus:  ^1.1.0
+  ##webview
+  flutter_webview_plugin: ^0.3.4
+  ##statusbar
+  flutter_statusbarcolor: ^0.2.1
 
 dev_dependencies:
   flutter_test:

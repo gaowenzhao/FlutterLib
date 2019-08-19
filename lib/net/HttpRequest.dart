@@ -41,7 +41,7 @@ class HttpRequest {
 //    _initOption(option,header);
     // 添加拦截器
     if (Config.DEBUG) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+/*      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
           (client) {
         // config the http client
         client.findProxy = (uri) {
@@ -50,7 +50,7 @@ class HttpRequest {
         };
         client.badCertificateCallback =
             (X509Certificate cert, String host, int port) => true;//忽略证书
-      };
+      };*/
       dio.interceptors.add(InterceptorsWrapper(
           onRequest: (RequestOptions options){
             print("\n================== 请求数据 ==========================");

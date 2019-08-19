@@ -11,7 +11,8 @@ import 'package:flutter/material.dart';
 ///切换tab不重置数据
 class TabStackPage extends StatefulWidget{
   final List tabList;
-  const TabStackPage({Key key, this.tabList}) : super(key: key);
+  final Function onTap;
+  const TabStackPage({Key key, this.tabList,this.onTap}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _TabStackState();
@@ -68,6 +69,7 @@ class _TabStackState extends State<TabStackPage> with SingleTickerProviderStateM
   void _ItemTapped(int index) {
     setState(() {
       _currentIndex = index;
+      widget.onTap(index);
     });
   }
 }

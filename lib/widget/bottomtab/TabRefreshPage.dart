@@ -11,7 +11,8 @@ List tabList = [
 ///切换tab重置数据
 class TabRefreshPage extends StatefulWidget{
   final List tabList;
-  const TabRefreshPage({Key key, this.tabList}) : super(key: key);
+  final Function onTap;
+  const TabRefreshPage({Key key, this.tabList,this.onTap}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _TabRefreshState();
@@ -49,7 +50,6 @@ class _TabRefreshState extends State<TabRefreshPage> with SingleTickerProviderSt
         //shifting :按钮点击移动效果
         //fixed：固定
         type: BottomNavigationBarType.fixed,
-//        fixedColor: Colors.blue,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
       ),
@@ -60,6 +60,7 @@ class _TabRefreshState extends State<TabRefreshPage> with SingleTickerProviderSt
   void _ItemTapped(int index) {
     setState(() {
       _currentIndex = index;
+      widget.onTap(index);
     });
   }
 }

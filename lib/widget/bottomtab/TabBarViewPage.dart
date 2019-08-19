@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../StatusBarUtils.dart';
 /*
 List tabList = [
   {'text': '业界动态','icon': Icon(Icons.language),'page': FirstPage(title: "首页")},
@@ -11,10 +13,10 @@ List tabList = [
 ///切换tab不重置数据，还可以左右滑动切换tab
 class TabBarViewPage extends StatefulWidget{
   final List tabList;
-  const TabBarViewPage({Key key, this.tabList}) : super(key: key);
+  final Function onTap;
+  const TabBarViewPage({Key key, this.tabList,this.onTap}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _TabBarViewState();
   }
 }
@@ -28,6 +30,7 @@ class _TabBarViewState extends State<TabBarViewPage> with SingleTickerProviderSt
     control = TabController(length: 4, vsync: this);
     tabList = widget.tabList;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +49,9 @@ class _TabBarViewState extends State<TabBarViewPage> with SingleTickerProviderSt
               Tab(text: tabList[2]["text"], icon: tabList[2]["icon"]),
               Tab(text: tabList[3]["text"], icon: tabList[3]["icon"])
             ],
+            onTap: (index){
+              widget.onTap(index);
+            },
             controller: control,
             labelColor: Colors.blue,
             unselectedLabelColor: Colors.grey,
